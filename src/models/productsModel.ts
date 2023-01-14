@@ -3,7 +3,15 @@ import { ResultSetHeader } from 'mysql2';
 import { Product } from '../interfaces';
 import connection from './connection';
 
-export default async function createProduct(product: Product) {
+export async function getAllProducts() {
+  const [products] = await connection.execute(
+    'SELECT * FROM Trybesmith.products',
+  );
+
+  return products;
+}
+
+export async function createProduct(product: Product) {
   const { name, amount } = product;
 
   const [{ insertId }] = await connection.execute<ResultSetHeader>(
