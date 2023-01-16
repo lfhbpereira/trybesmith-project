@@ -6,7 +6,7 @@ import * as productsService from '../services/productsService';
 async function getAllProducts(_req: Request, res: Response) {
   const products = await productsService.getAllProducts();
 
-  res.status(200).json(products);
+  return res.status(200).json(products);
 }
 
 async function createProduct(req: Request, res: Response) {
@@ -14,7 +14,7 @@ async function createProduct(req: Request, res: Response) {
 
   const newProduct = await productsService.createProduct(product);
 
-  res.status(201).json(newProduct);
+  return res.status(201).json(newProduct);
 }
 
 export default { getAllProducts, createProduct };

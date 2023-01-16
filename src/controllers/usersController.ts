@@ -8,7 +8,7 @@ async function createUser(req: Request, res: Response) {
 
   const token = await usersService.createUser(user);
 
-  res.status(201).json({ token });
+  return res.status(201).json({ token });
 }
 
 async function userLogin(req: Request, res: Response) {
