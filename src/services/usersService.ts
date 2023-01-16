@@ -18,7 +18,7 @@ async function userLogin(login: Login) {
   const passcode = user?.password === login.password;
 
   if (!user || !passcode) {
-    return { type: 'NOT_FOUND', message: 'Username or password invalid' };
+    return { type: 'INVALID_FIELDS', message: 'Username or password invalid' };
   }
 
   const { password, ...data } = user;
