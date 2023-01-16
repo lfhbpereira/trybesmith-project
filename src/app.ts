@@ -6,6 +6,10 @@ import ordersController from './controllers/ordersController';
 import validateUserLogin from './middlewares/validateUserLogin';
 import validateProductName from './middlewares/validateProductName';
 import validateProductAmount from './middlewares/validateProductAmount';
+import validateUserName from './middlewares/validateUserName';
+import validateUserVocation from './middlewares/validateUserVocation';
+import validateUserLevel from './middlewares/validateUserLevel';
+import validateUserPassword from './middlewares/validateUserPassword';
 
 const app = express();
 
@@ -13,7 +17,14 @@ app.use(express.json());
 
 app.get('/products', productsController.getAllProducts);
 app.post('/products', validateProductName, validateProductAmount, productsController.createProduct);
-app.post('/users', usersController.createUser);
+app.post(
+  '/users',
+  validateUserName,
+  validateUserVocation,
+  validateUserLevel,
+  validateUserPassword,
+  usersController.createUser,
+);
 app.get('/orders', ordersController.getAllOrders);
 app.post('/login', validateUserLogin, usersController.userLogin);
 
