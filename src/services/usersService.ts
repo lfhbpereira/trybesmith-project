@@ -1,9 +1,9 @@
 import { User } from '../interfaces';
-import * as usersModel from '../models/usersModel';
+import usersModel from '../models/usersModel';
 import generateToken from '../auth/jwt';
 
-export default async function createUser(user: User) {
-  const newUser = await usersModel.default(user);
+async function createUser(user: User) {
+  const newUser = await usersModel.createUser(user);
 
   const { password, ...data } = newUser;
 
@@ -11,3 +11,5 @@ export default async function createUser(user: User) {
 
   return token;
 }
+
+export default { createUser };

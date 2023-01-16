@@ -1,15 +1,16 @@
 import express from 'express';
 
-import productsRouter from './routers/productsRouter';
-import usersRouter from './routers/usersRouter';
-import ordersRouter from './routers/ordersRouter';
+import productsController from './controllers/productsController';
+import usersController from './controllers/usersController';
+import ordersController from './controllers/ordersController';
 
 const app = express();
 
 app.use(express.json());
 
-app.use('/products', productsRouter);
-app.use('/users', usersRouter);
-app.use('/orders', ordersRouter);
+app.get('/products', productsController.getAllProducts);
+app.post('/products', productsController.createProduct);
+app.post('/users', usersController.createUser);
+app.get('/orders', ordersController.getAllOrders);
 
 export default app;

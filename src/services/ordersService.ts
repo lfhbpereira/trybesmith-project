@@ -1,7 +1,9 @@
-import * as ordersModel from '../models/ordersModel';
+import ordersModel from '../models/ordersModel';
 
-export default async function getAllOrders() {
-  const orders = await ordersModel.default();
+async function getAllOrders() {
+  const orders = await ordersModel.getAllOrders();
 
   return orders;
 }
+
+export default { getAllOrders };
