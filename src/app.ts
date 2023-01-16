@@ -3,7 +3,7 @@ import express from 'express';
 import productsController from './controllers/productsController';
 import usersController from './controllers/usersController';
 import ordersController from './controllers/ordersController';
-import validateLogin from './middlewares/validateLogin';
+import validateUserLogin from './middlewares/validateUserLogin';
 import validateProductName from './middlewares/validateProductName';
 import validateProductAmount from './middlewares/validateProductAmount';
 
@@ -15,6 +15,6 @@ app.get('/products', productsController.getAllProducts);
 app.post('/products', validateProductName, validateProductAmount, productsController.createProduct);
 app.post('/users', usersController.createUser);
 app.get('/orders', ordersController.getAllOrders);
-app.post('/login', validateLogin, usersController.userLogin);
+app.post('/login', validateUserLogin, usersController.userLogin);
 
 export default app;

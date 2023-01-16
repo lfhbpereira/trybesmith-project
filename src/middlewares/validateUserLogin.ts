@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-function validateLogin(req: Request, res: Response, next: NextFunction) {
+function validateUserLogin(req: Request, res: Response, next: NextFunction) {
   const { username, password } = req.body;
 
   if (!username) {
@@ -14,4 +14,4 @@ function validateLogin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-export default validateLogin;
+export default validateUserLogin;
