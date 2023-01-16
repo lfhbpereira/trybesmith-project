@@ -1,6 +1,6 @@
-import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader, RowDataPacket } from 'mysql2';
 
-import { User } from '../interfaces';
+import { Login, User } from '../interfaces';
 import connection from './connection';
 
 async function createUser(user: User) {
@@ -14,4 +14,15 @@ async function createUser(user: User) {
   return { id: insertId, ...user };
 }
 
-export default { createUser };
+async function userLogin(login: Login) {
+  const { username, password } = login;
+
+  const [[rows]] = await connection.execute<RowDataPacket[] & User[]>(
+    'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?',
+    [username, password],
+  );
+
+  return rows;
+}
+
+export { createUser, userLogin };
