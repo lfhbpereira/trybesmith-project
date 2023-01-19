@@ -1,5 +1,5 @@
-import { Login, User } from '../interfaces';
 import * as usersModel from '../models/usersModel';
+import { Login, User } from '../interfaces';
 import generateToken from '../auth/jwt';
 
 async function createUser(user: User) {

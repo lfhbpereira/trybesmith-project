@@ -1,7 +1,7 @@
 import { ResultSetHeader } from 'mysql2';
 
-import { Order } from '../interfaces';
 import connection from './connection';
+import { Order } from '../interfaces';
 
 async function getAllOrders() {
   const [orders] = await connection.execute(

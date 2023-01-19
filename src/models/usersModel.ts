@@ -1,7 +1,7 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2';
 
-import { Login, User } from '../interfaces';
 import connection from './connection';
+import { Login, User } from '../interfaces';
 
 async function createUser(user: User) {
   const { username, vocation, level, password } = user;
