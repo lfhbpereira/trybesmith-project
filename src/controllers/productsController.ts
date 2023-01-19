@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 
-import { Product } from '../interfaces';
 import * as productsService from '../services/productsService';
 
 async function getAllProducts(_req: Request, res: Response) {
@@ -10,7 +9,7 @@ async function getAllProducts(_req: Request, res: Response) {
 }
 
 async function createProduct(req: Request, res: Response) {
-  const product = req.body as Product;
+  const product = req.body;
 
   const newProduct = await productsService.createProduct(product);
 

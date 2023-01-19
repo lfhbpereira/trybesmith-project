@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 
-import { User } from '../interfaces';
 import * as usersService from '../services/usersService';
 
 async function createUser(req: Request, res: Response) {
-  const user = req.body as User;
+  const user = req.body;
 
   const token = await usersService.createUser(user);
 
