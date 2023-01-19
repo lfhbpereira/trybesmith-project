@@ -13,4 +13,10 @@ async function createProduct(product: Product) {
   return newProduct;
 }
 
-export { getAllProducts, createProduct };
+async function updateProduct(orderId: number, productsIds: number[]) {
+  const promises = productsIds.map((id) => productsModel.updateProduct({ orderId, id }));
+
+  await Promise.all(promises);
+}
+
+export { getAllProducts, createProduct, updateProduct };

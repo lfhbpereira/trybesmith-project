@@ -22,4 +22,15 @@ async function createProduct(product: Product) {
   return { id: insertId, ...product };
 }
 
-export { getAllProducts, createProduct };
+async function updateProduct(product: Partial<Product>) {
+  const { orderId, id } = product;
+
+  const result = await connection.execute(
+    'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+    [orderId, id],
+  );
+
+  return result;
+}
+
+export { getAllProducts, createProduct, updateProduct };

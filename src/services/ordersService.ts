@@ -1,4 +1,5 @@
-import ordersModel from '../models/ordersModel';
+import { Order } from '../interfaces';
+import * as ordersModel from '../models/ordersModel';
 
 async function getAllOrders() {
   const orders = await ordersModel.getAllOrders();
@@ -6,4 +7,10 @@ async function getAllOrders() {
   return orders;
 }
 
-export default { getAllOrders };
+async function createOrder(order: Order) {
+  const orderId = await ordersModel.createOrder(order);
+
+  return orderId;
+}
+
+export { getAllOrders, createOrder };

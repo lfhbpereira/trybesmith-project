@@ -10,6 +10,8 @@ import validateUserName from './middlewares/validateUserName';
 import validateUserVocation from './middlewares/validateUserVocation';
 import validateUserLevel from './middlewares/validateUserLevel';
 import validateUserPassword from './middlewares/validateUserPassword';
+import validateUserToken from './middlewares/validateUserToken';
+import validateProductOrder from './middlewares/validateProductOrder';
 
 const app = express();
 
@@ -26,6 +28,7 @@ app.post(
   usersController.createUser,
 );
 app.get('/orders', ordersController.getAllOrders);
+app.post('/orders', validateUserToken, validateProductOrder, ordersController.createOrder);
 app.post('/login', validateUserLogin, usersController.userLogin);
 
 export default app;

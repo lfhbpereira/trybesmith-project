@@ -1,3 +1,6 @@
+import { ResultSetHeader } from 'mysql2';
+
+import { Order } from '../interfaces';
 import connection from './connection';
 
 async function getAllOrders() {
@@ -12,4 +15,15 @@ async function getAllOrders() {
   return orders;
 }
 
-export default { getAllOrders };
+async function createOrder(order: Order) {
+  const { user } = order;
+
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(
+    'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
+    [user.id],
+  );
+
+  return insertId;
+}
+
+export { getAllOrders, createOrder };
